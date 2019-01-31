@@ -1,14 +1,10 @@
 FROM ubuntu:bionic
 
-ARG packages="sudo"
-
-ENV TERM xterm-256color
+ARG packages="zsh vim tmux ncurses-bin git"
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 RUN apt-get -y --no-install-recommends install ${packages}
 
-ADD . /repo
-WORKDIR /repo
+CMD ["/usr/bin/env", "zsh"]
 
-RUN ./setup.sh
